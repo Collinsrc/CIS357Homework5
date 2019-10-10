@@ -55,15 +55,82 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-//        Button CalculateButton = findViewById(R.id.CalculateButton);
-//        CalculateButton.setOnClickListener(v ->{
+        Button CalculateButton = findViewById(R.id.CalculateButton);
+        CalculateButton.setOnClickListener(v ->{
+            UnitsConverter.LengthUnits FromUnitsLength = UnitsConverter.LengthUnits.Meters;
+            UnitsConverter.LengthUnits ToUnitsLength = UnitsConverter.LengthUnits.Meters;
+            UnitsConverter.VolumeUnits FromUnitsVolume = UnitsConverter.VolumeUnits.Liters;
+            UnitsConverter.VolumeUnits ToUnitsVolume = UnitsConverter.VolumeUnits.Liters;
+
+            Double ConvertedValue = 0.0;
+
+            if(From.getText().equals("Yards")){
+                FromUnitsLength = UnitsConverter.LengthUnits.Yards;
+            } else if (From.getText().equals("Meters")){
+                FromUnitsLength = UnitsConverter.LengthUnits.Meters;
+            } else {
+                FromUnitsLength = UnitsConverter.LengthUnits.Miles;
+            }
+
+            if(To.getText().equals("Yards")){
+                ToUnitsLength = UnitsConverter.LengthUnits.Yards;
+            } else if (To.getText().equals("Meters")){
+                ToUnitsLength = UnitsConverter.LengthUnits.Meters;
+            } else {
+                ToUnitsLength = UnitsConverter.LengthUnits.Miles;
+            }
+
+            if(From.getText().equals("Liters")){
+                FromUnitsVolume = UnitsConverter.VolumeUnits.Liters;
+            } else if (From.getText().equals("Quarts")){
+                FromUnitsVolume = UnitsConverter.VolumeUnits.Quarts;
+            } else {
+                FromUnitsVolume = UnitsConverter.VolumeUnits.Gallons;
+            }
+
+            if(To.getText().equals("Liters")){
+                ToUnitsVolume = UnitsConverter.VolumeUnits.Liters;
+            } else if (To.getText().equals("Quarts")){
+                ToUnitsVolume = UnitsConverter.VolumeUnits.Quarts;
+            } else {
+                ToUnitsVolume = UnitsConverter.VolumeUnits.Gallons;
+            }
+
+
 //            if(From.getText().equals("Yards")|| From.getText().equals("Meters")|| From.getText().equals("Miles")){
 //                if(From.getText().equals("")){
 //                    Double input = Double.parseDouble(To.getText().toString());
-//                    UnitsConverter.convert(input, UnitsConverter.LengthUnits.Meters, UnitsConverter.LengthUnits.Meters);
+//                    UnitsConverter.convert(input, FromUnitsLength , UnitsConverter.LengthUnits.Meters);
+//                    fromText.setText();
 //                }
 //            }
-//        });
+
+            if(From.getText().equals("Yards")|| From.getText().equals("Meters")|| From.getText().equals("Miles")){
+                if(From.getText().equals("")){
+                    Double input = Double.parseDouble(toText.getText().toString());
+                    ConvertedValue = UnitsConverter.convert(input, ToUnitsLength, FromUnitsLength);
+                    fromText.setText(ConvertedValue.toString());
+                }
+                else {
+                    Double input = Double.parseDouble(fromText.getText().toString());
+                    ConvertedValue = UnitsConverter.convert(input, FromUnitsLength, ToUnitsLength);
+                    toText.setText(ConvertedValue.toString());
+                }
+            }
+
+            if(From.getText().equals("Liters")|| From.getText().equals("Gallons")|| From.getText().equals("Quarts")){
+                if(From.getText().equals("")){
+                    Double input = Double.parseDouble(toText.getText().toString());
+                    ConvertedValue = UnitsConverter.convert(input, ToUnitsVolume, FromUnitsVolume);
+                    fromText.setText(ConvertedValue.toString());
+                }
+                else {
+                    Double input = Double.parseDouble(fromText.getText().toString());
+                    ConvertedValue = UnitsConverter.convert(input, FromUnitsVolume, ToUnitsVolume);
+                    toText.setText(ConvertedValue.toString());
+                }
+            }
+        });
     }
 
     @Override
@@ -99,11 +166,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager =
-                (InputMethodManager) activity.getSystemService(
-                        Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(
-                activity.getCurrentFocus().getWindowToken(), 0);
+        View view = activity.getCurrentFocus();
+        if(view != null) {
+            InputMethodManager inputMethodManager =
+                    (InputMethodManager) activity.getSystemService(
+                            Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(
+                    activity.getCurrentFocus().getWindowToken(), 0);
+        }
     }
 
     public void setupUI(View view) {
