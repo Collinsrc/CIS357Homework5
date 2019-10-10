@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/parent">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,12 +27,12 @@
             android:layout_height="wrap_content"
             android:text="From" />
 
-        <EditText
-            android:id="@+id/FromField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal" />
+            <EditText
+                android:id="@+id/FromField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal" />
         <TextView
             android:id="@+id/ToText"
             android:layout_width="match_parent"
@@ -55,15 +56,15 @@
                 android:id="@+id/FromUnits"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="Units" />
+                android:layout_marginTop="55dp"
+                android:text="Yards" />
 
             <TextView
                 android:id="@+id/ToUnits"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="Units" />
+                android:layout_marginTop="45dp"
+                android:text="Meters" />
 
         </LinearLayout>
     </LinearLayout>
