@@ -13,8 +13,17 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final int CHOICES = 1;
+    private String defaultFromDistance = "Yards";
+    private String defaultToDistance = "Meters";
+    private String defaultFromVolume = "Liters";
+    private String defaultToVolume = "Gallons";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +32,38 @@ public class MainActivity extends AppCompatActivity {
         setupUI(findViewById(R.id.parent));
         EditText fromText = (EditText) findViewById(R.id.FromField);
         EditText toText = (EditText) findViewById(R.id.ToField);
+        TextView From = (TextView) findViewById(R.id.FromUnits);
+        TextView To = (TextView) findViewById(R.id.ToUnits);
+        From.setText(defaultFromDistance);
+        To.setText(defaultToDistance);
 
         Button ClearButton = (Button) findViewById(R.id.ClearButton);
         ClearButton.setOnClickListener( v-> {
             fromText.getText().clear();
             toText.getText().clear();
         });
+        Button ModeButton = findViewById(R.id.ModeButton);
+        ModeButton.setOnClickListener( v-> {
+            if(From.getText().equals("Yards")|| From.getText().equals("Meters")|| From.getText().equals("Miles")){
+                From.setText(defaultFromVolume);
+                To.setText(defaultToVolume);
+            }
+            else{
+                From.setText(defaultFromDistance);
+                To.setText(defaultToDistance);
+            }
+        });
+
+
+//        Button CalculateButton = findViewById(R.id.CalculateButton);
+//        CalculateButton.setOnClickListener(v ->{
+//            if(From.getText().equals("Yards")|| From.getText().equals("Meters")|| From.getText().equals("Miles")){
+//                if(From.getText().equals("")){
+//                    Double input = Double.parseDouble(To.getText().toString());
+//                    UnitsConverter.convert(input, UnitsConverter.LengthUnits.Meters, UnitsConverter.LengthUnits.Meters);
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -40,11 +75,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         if(item.getItemId() == R.id.action_toSettings){
+            TextView From = (TextView) findViewById(R.id.FromUnits);
+            TextView To = (TextView) findViewById(R.id.ToUnits);
             Intent intent = new Intent(MainActivity.this, Settings.class);
-            startActivity(intent);
+            intent.putExtra("FromChoice", From.getText() );
+            intent.putExtra("ToChoice", To.getText() );
+            startActivityForResult(intent, CHOICES);
             return true;
         }
         return false;
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == CHOICES) {
+            TextView From = (TextView) findViewById(R.id.FromUnits);
+            TextView To = (TextView) findViewById(R.id.ToUnits);
+            From.setText(data.getStringExtra("FromChoice"));
+            To.setText(data.getStringExtra("ToChoice"));
+        }
+
     }
 
     public static void hideSoftKeyboard(Activity activity) {

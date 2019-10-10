@@ -32,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Enter Units"
                 android:inputType="numberDecimal" />
         <TextView
             android:id="@+id/ToText"
@@ -39,12 +40,13 @@
             android:layout_height="wrap_content"
             android:text="To" />
 
-        <EditText
-            android:id="@+id/ToField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal" />
+            <EditText
+                android:id="@+id/ToField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter Units"
+                android:inputType="numberDecimal" />
 
         </LinearLayout>
 
