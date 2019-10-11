@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 
             if(From.getText().equals("Yards")|| From.getText().equals("Meters")|| From.getText().equals("Miles")){
-                if(From.getText().equals("")){
+                if(fromText.getText().toString().equals("")){
                     Double input = Double.parseDouble(toText.getText().toString());
                     ConvertedValue = UnitsConverter.convert(input, ToUnitsLength, FromUnitsLength);
                     fromText.setText(ConvertedValue.toString());
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if(From.getText().equals("Liters")|| From.getText().equals("Gallons")|| From.getText().equals("Quarts")){
-                if(From.getText().equals("")){
+                if(fromText.getText().toString().equals("")){
                     Double input = Double.parseDouble(toText.getText().toString());
                     ConvertedValue = UnitsConverter.convert(input, ToUnitsVolume, FromUnitsVolume);
                     fromText.setText(ConvertedValue.toString());
