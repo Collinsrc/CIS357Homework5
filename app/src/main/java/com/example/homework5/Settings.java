@@ -49,11 +49,6 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        TextView From = (TextView) findViewById(R.id.FromUnits);
-        TextView To = (TextView) findViewById(R.id.ToUnits);
-        From.setText(FromFieldExact);
-        To.setText(ToFieldExact);
-
 
         if(FromFieldExact.equals("Yards") || FromFieldExact.equals("Meters") || FromFieldExact.equals("Miles")) {
 
@@ -76,7 +71,6 @@ public class Settings extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     FromChoice = (String) adapterView.getItemAtPosition(i);
-                    From.setText(FromChoice);
                 }
 
                 @Override
@@ -103,7 +97,6 @@ public class Settings extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     ToChoice = (String) adapterView.getItemAtPosition(i);
-                    To.setText(ToChoice);
                 }
 
                 @Override
@@ -134,7 +127,6 @@ public class Settings extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     FromChoice = (String) adapterView.getItemAtPosition(i);
-                    From.setText(FromChoice);
                 }
 
                 @Override
@@ -161,7 +153,6 @@ public class Settings extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     ToChoice = (String) adapterView.getItemAtPosition(i);
-                    To.setText(ToChoice);
                 }
 
                 @Override
@@ -169,8 +160,6 @@ public class Settings extends AppCompatActivity {
 
                 }
             });
-            From.setText(FromChoice);
-            To.setText(ToChoice);
         }
         }
 
